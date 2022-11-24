@@ -1,5 +1,9 @@
 On Ansible Server 
  sudo -s
+ 
+ // Generate ssh public-private key pairs.
+ // Press enter key for all the prompted steps to use default configurations
+ ssh-keygen
  ll ~/.ssh/
  
  // Copy the public key from ansible server
