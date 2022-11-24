@@ -1,0 +1,10 @@
+On Ansible Server 
+ sudo -s
+ ll ~/.ssh/
+ 
+ // Copy the public key from ansible server
+ cat ~/.ssh/id_rsa.pub
+ 
+On remote server 
+ // Paste the Ansible server public key on remote server
+ vim ~/.ssh/authorized_keys
