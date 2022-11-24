@@ -1,7 +1,7 @@
 On Ansible Server 
  sudo -s
  
- // Generate ssh public-private key pairs.
+ // Generate ssh public-private key pairs. (root user)
  // Press enter key for all the prompted steps to use default configurations
  ssh-keygen
  ll ~/.ssh/
@@ -10,5 +10,6 @@ On Ansible Server
  cat ~/.ssh/id_rsa.pub
  
 On remote server 
- // Paste the Ansible server public key on remote server
+sudo -s
+ // Paste the Ansible server public key on remote server (root user)
  vim ~/.ssh/authorized_keys
