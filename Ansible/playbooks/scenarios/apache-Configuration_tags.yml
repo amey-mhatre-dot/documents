@@ -1,0 +1,32 @@
+---
+
+- hosts: webserver
+  become: yes
+  tasks:
+  - name: Install Apache Server
+    yum:
+     name: httpd
+     state: present
+    tags:
+    - install
+
+  - name: Start Apache Server
+    service:
+     name: httpd
+     state: started
+    tags:
+    - startApache
+
+  - name: Copy sample Welcome HTML page
+    copy:
+     src: /usr/local/gitDemo/aug2019/WebContent/login.html
+     dest: /var/www/html/
+    tags:
+    - Copy HTML
+
+  - name: Stop the firewalld service
+    service:
+     name: firewalld
+     state: stopped
+    tags:
+    - Stop-Firewalld

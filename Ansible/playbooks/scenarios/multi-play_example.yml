@@ -1,0 +1,61 @@
+---
+
+# Play for webserver
+- name: Play Web - Create apache directories and username in web servers
+  hosts: webserver
+  become: yes
+  become_user: root
+  tasks:
+  - name: create username apacheadm
+    user:
+      name: apacheadm
+      group: devops
+      shell: /bin/bash
+      home: /home/apacheadm
+
+  - name: install httpd
+    yum:
+      name: httpd
+      state: installed
+
+  - name: start httpd
+    service:
+      name: httpd
+      state: started
+
+# Play for appserver
+- name: Create and setup tomcat directory
+  hosts: appserver
+  gather_facts: no
+  tasks:
+  - name: Download Tomcat
+    get_url:
+          url: https://mirrors.estointernet.in/apache/tomcat/tomcat-9/v9.0.36/bin/apache-tomcat-9.0.36.tar.gz
+          dest: /opt
+
+  - name: Extract the file downloaded tomcat file
+    shell: |
+       cd /opt
+       tar xvf apache-tomcat-9.0.36.tar.gz
+       mv apache-tomcat-9.0.36 tomcat-9.0.36
+
+  - name: Create a admin user for tomcat access
+    user:
+      name: admin
+
+  - name: Change Ownership and group of the Tomcat directory
+    file:
+      path: /opt/tomcat-9.0.36
+      owner: admin
+      group: admin
+      mode: 775
+      state: directory
+      recurse: yes
+
+  - name: Start Tomcat
+    command: nohup /opt/tomcat-9.0.36/bin/startup.sh # Execute command even after you have exited from the shell prompt
+
+  - name: Stop firewall service
+    service:
+      name: firewalld
+      state: stopped
