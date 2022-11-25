@@ -1,0 +1,20 @@
+---
+- hosts: all
+  vars:
+    file_path: /usr/local/ritesh
+    package_name:
+     - 'vim'
+     - 'wget'
+     - 'telnet'
+  tasks:
+  - name: check path
+    stat:
+      path: "{{ file_path }}"
+      register: app_path
+
+  - name: install packages
+    package:
+     name: "{{ item }}"
+     state: present
+     with_items: "{{ package_name }}"
+     when: app_path.stat.exists
