@@ -1,0 +1,19 @@
+---
+- name: Handlers example
+  hosts: webserver
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+    - name: Copy the Application page
+      copy:
+        src: index.html
+        dest: /usr/share/nginx/html/
+      notify: Restart Nginx
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
