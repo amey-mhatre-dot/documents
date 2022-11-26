@@ -10,11 +10,11 @@
   - name: check path
     stat:
       path: "{{ file_path }}"
-      register: app_path
+    register: app_path
 
   - name: install packages
     package:
-     name: "{{ item }}"
-     state: present
-     with_items: "{{ package_name }}"
-     when: app_path.stat.exists
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ package_name }}"
+    when: app_path.stat.exists
