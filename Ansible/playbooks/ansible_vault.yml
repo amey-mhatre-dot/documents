@@ -1,0 +1,9 @@
+---
+
+- name: Ansible vault example
+  hosts: webserver
+  tasks:
+   - name: Execute copy module
+     copy:
+         content: "We are learning DevOps and the Ansible copy module has been executed successfully."
+         dest: /root/demo_copy.txt
