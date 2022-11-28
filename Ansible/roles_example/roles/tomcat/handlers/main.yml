@@ -1,0 +1,3 @@
+---
+- name: restart tomcat
+  command:  /usr/share/tomcat/bin/shutdown.sh && /usr/share/tomcat/bin/startup.sh 
