@@ -1,0 +1,19 @@
+cd /etc/ansible/roles/
+
+ ansible-galaxy init tomcat
+
+ll /etc/ansible/roles/tomcat
+
+
+Copy https://github.com/Ritesh-Goyal/documents/blob/main/Ansible/roles_example/roles/tomcat/tasks/main.yml into below file
+vim /etc/ansible/roles/tomcat/tasks/main.yml
+
+Copy https://github.com/Ritesh-Goyal/documents/blob/main/Ansible/roles_example/roles/tomcat/handlers/main.yml into below file
+vim /etc/ansible/roles/tomcat/handlers/main.yml
+
+Copy https://github.com/Ritesh-Goyal/documents/blob/main/Ansible/roles_example/roles/tomcat/templates/tomcat-users.xml into below file
+vim /etc/ansible/roles/tomcat/templates/tomcat-users.xml 
+
+
+Copy https://github.com/Ritesh-Goyal/documents/blob/main/Ansible/roles_example/site.yml into below file
+vim site.yml 
