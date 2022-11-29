@@ -24,7 +24,7 @@ Login onto server as root -
 
   // Setting M2_HOME and Path Variables
   $ echo "M2_HOME='/opt/apache-maven-3.6.3'" >> ~/.bashrc
-  $ echo "PATH="$M2_HOME/bin:$PATH"" >> ~/.bashrc
+  $ echo "PATH='$M2_HOME/bin:$PATH'" >> ~/.bashrc
   $ source ~/.bashrc
   
   // Verify the Maven installation
