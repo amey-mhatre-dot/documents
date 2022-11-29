@@ -10,6 +10,7 @@ Login onto server as root -
   
   // Verify the Java installation
   $ java --version
+  
   // Install Git
   $ sudo apt install git-all
   
