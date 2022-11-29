@@ -8,6 +8,8 @@ Login onto server as root -
   // Install JDK on ubuntu
   $ sudo apt install default-jdk
   
+  // Verify the Java installation
+  $ java --version
   // Install Git
   $ sudo apt install git-all
   
