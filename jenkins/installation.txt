@@ -38,3 +38,9 @@ Login onto server as root -
   /etc/apt/sources.list.d/jenkins.list > /dev/null
   $ sudo apt-get update
   $ sudo apt-get install jenkins
+  
+  // Verify Jenkins running (status will be active)
+  systemctl status jenkins
+  
+  // Check Jenkins port 8080
+  netstat -nlpt
