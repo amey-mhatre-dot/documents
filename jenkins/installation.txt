@@ -23,9 +23,9 @@ Login onto server as root -
   $ mv apache-maven-3.6.3 /opt/
 
   // Setting M2_HOME and Path Variables
-  $ M2_HOME='/opt/apache-maven-3.6.3'
-  $ PATH="$M2_HOME/bin:$PATH"
-  $ export PATH
+  $ echo "M2_HOME='/opt/apache-maven-3.6.3'" >> ~/.bashrc
+  $ echo "PATH="$M2_HOME/bin:$PATH"" >> ~/.bashrc
+  $ source ~/.bashrc
   
   // Verify the Maven installation
   $ mvn -version
