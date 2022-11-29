@@ -8,6 +8,9 @@ Login onto server as root -
   // Install JDK on ubuntu
   $ sudo apt install default-jdk
   
+  // Verify the Java installation
+  $ java --version
+  
   // Install Git
   $ sudo apt install git-all
   
@@ -20,9 +23,9 @@ Login onto server as root -
   $ mv apache-maven-3.6.3 /opt/
 
   // Setting M2_HOME and Path Variables
-  $ M2_HOME='/opt/apache-maven-3.6.3'
-  $ PATH="$M2_HOME/bin:$PATH"
-  $ export PATH
+  $ echo "M2_HOME='/opt/apache-maven-3.6.3'" >> ~/.bashrc
+  $ echo "PATH="$M2_HOME/bin:$PATH"" >> ~/.bashrc
+  $ source ~/.bashrc
   
   // Verify the Maven installation
   $ mvn -version
@@ -30,9 +33,8 @@ Login onto server as root -
   // Install Jenkins
   $ curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-
   $ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
-
+  $ sudo apt-get update
   $ sudo apt-get install jenkins
