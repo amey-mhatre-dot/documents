@@ -1,0 +1,22 @@
+node {
+	stage('code checkout'){
+		git branch: 'main', url: 'https://github.com/Ritesh-Goyal/demo-application.git'
+	}
+	
+	stage('build'){
+		def mvnHome = tool 'MVN_HOME'
+		withEnv(["MVN_HOME=$mvnHome"]) {
+			sh '"$MVN_HOME/bin/mvn" clean compile package'
+		}
+	}
+
+	stage('deploy'){
+		sh 'scp -r /var/lib/jenkins/workspace/demo-application/target/restro.war root@10.1.0.5:/usr/share/tomcat/webapps/'
+	}
+
+	stage('Notification'){
+		emailext body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+Check console output at $BUILD_URL to view the results.''', subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', to: 'ritesh.goyal590@gmail.com, rajeshmidha9159@gmail.com, jwalachaubey@gmail.com, manish.shettigar@gmail.com'
+	}
+}
