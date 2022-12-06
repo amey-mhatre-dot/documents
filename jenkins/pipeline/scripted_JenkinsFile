@@ -11,7 +11,7 @@ node {
 	}
 
 	stage('deploy'){
-		sh 'scp -r /var/lib/jenkins/workspace/demo-application/target/restro.war root@10.1.0.5:/usr/share/tomcat/webapps/'
+		sh 'scp -r target/restro.war root@10.1.0.5:/usr/share/tomcat/webapps/'
 	}
 
 	stage('Notification'){
