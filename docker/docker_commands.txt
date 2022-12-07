@@ -18,15 +18,15 @@
 	$ sudo docker ps -a
 
 // Removing the docker containers
-	$ docker rm nginx-demo
-	$ docker rm nginx-detached-demo
+	$ sudo docker rm nginx-demo
+	$ sudo docker rm nginx-detached-demo
 
 // Running docker container and accessing the application
-	$ docker run --name=nginx-demo -p 80:80 -d nginx
+	$ sudo docker run --name=nginx-demo -p 80:80 -d nginx
 
 // Taking access of the docker container
-	$ docker exec nginx-demo ls /etc/nginx
+	$ sudo docker exec nginx-demo ls /etc/nginx
 
 // Stop and start the container
-	$ docker stop nginx-demo
-	$ docker start nginx-demo
+	$ sudo docker stop nginx-demo
+	$ sudo docker start nginx-demo
