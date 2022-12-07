@@ -22,7 +22,7 @@ Install Docker Engine
 		$ sudo apt-get install docker-ce docker-ce-cli containerd.io
 	
 	3. Verfiy Docker service
-		$ docker info
+		$ sudo docker info
 	
 	4. Verify that the Docker Engine installation is successful by running the hello-world image:
 		$ sudo docker run hello-world
