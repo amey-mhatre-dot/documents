@@ -30,3 +30,20 @@
 // Stop and start the container
 	$ sudo docker stop nginx-demo
 	$ sudo docker start nginx-demo
+
+// Remove Docker image from the local system
+	$ sudo docker rmi nginx
+	$ sudo docker rmi hello-world
+	
+// Pause and Unpause the docker image
+	$ docker pause nginx-demo
+	$ docker unpause nginx-demo
+
+// Checking the logs of the docker container
+	$ docker logs nginx-demo
+
+// Create index.html file and add it to container
+	$ sudo mkdir -p /opt/nginx/html/
+	$ sudo vim /opt/nginx/html/index.html
+	$ sudo docker stop nginx-demo
+	$ sudo docker run --name=nginx-demo-app -p 80:80 -v /opt/nginx/html/:/usr/share/nginx/html/ -d nginx
