@@ -36,11 +36,12 @@
 	$ sudo docker rmi hello-world
 	
 // Pause and Unpause the docker image
-	$ docker pause nginx-demo
-	$ docker unpause nginx-demo
+	$ sudo docker pause nginx-demo
+	$ sudo docker unpause nginx-demo
 
 // Checking the logs of the docker container
-	$ docker logs nginx-demo
+	$ sudo docker logs nginx-demo
+	$ sudo docker logs -f nginx-demo
 
 // Create index.html file and add it to container
 	$ sudo mkdir -p /opt/nginx/html/
