@@ -1,0 +1,49 @@
+// Listing Docker images
+	$ sudo docker images
+	
+// Searching Docker images via command
+	$ sudo docker search nginx
+
+// Pulling docker image from dockerhub
+	$ sudo docker pull nginx
+
+// Running Docker Image (Root mode)
+	$ sudo docker run --name nginx-demo nginx
+	
+// Running Docker Image (detached mode)
+	$ sudo docker run --name nginx-detached-demo --detach nginx
+	
+// Listing Docker process
+	$ sudo docker ps
+	$ sudo docker ps -a
+
+// Removing the docker containers
+	$ sudo docker rm nginx-demo
+	$ sudo docker rm nginx-detached-demo
+
+// Running docker container and accessing the application
+	$ sudo docker run --name=nginx-demo -p 80:80 -d nginx
+
+// Taking access of the docker container
+	$ sudo docker exec nginx-demo ls /etc/nginx
+
+// Stop and start the container
+	$ sudo docker stop nginx-demo
+	$ sudo docker start nginx-demo
+
+// Remove Docker image from the local system
+	$ sudo docker rmi nginx
+	$ sudo docker rmi hello-world
+	
+// Pause and Unpause the docker image
+	$ docker pause nginx-demo
+	$ docker unpause nginx-demo
+
+// Checking the logs of the docker container
+	$ docker logs nginx-demo
+
+// Create index.html file and add it to container
+	$ sudo mkdir -p /opt/nginx/html/
+	$ sudo vim /opt/nginx/html/index.html
+	$ sudo docker stop nginx-demo
+	$ sudo docker run --name=nginx-demo-app -p 80:80 -v /opt/nginx/html/:/usr/share/nginx/html/ -d nginx
