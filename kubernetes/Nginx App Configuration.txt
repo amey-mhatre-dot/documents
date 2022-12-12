@@ -16,7 +16,6 @@ NOTES: The name can contain only alphanumeric characters (case-sensitive) and hy
 	Step 3: Deploy sample application
     	
 		3.1 Apply a deployment file
-		$ kubectl apply -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/nginx-deployment.yaml
 		$ kubectl create deployment nginx-deployment --image=nginx:latest --port=80 --replicas=2
 
 		3.2 Verify that your pods are running and have their own internal IP addresses:
@@ -27,7 +26,8 @@ NOTES: Keep in mind the following details:
 * NodePort exposes the service on each node’s IP address at a static port.
 * LoadBalancer exposes the service externally using a load balancer.
 
-	Step 4: Create a ClusterIP service 
+	Step 4: Create a ClusterIP service
+
     		4.1 To expose a deployment of ClusterIP type, run the following imperative command:
 		$ kubectl expose deployment nginx-deployment  --type=ClusterIP  --name=nginx-service-cluster-ip
     
@@ -38,6 +38,7 @@ NOTES: Keep in mind the following details:
 	    	$ kubectl delete service nginx-service-cluster-ip
 	
 	Step 5: Create a NodePort service
+	
 		5.1 To expose a deployment of NodePort type, run the following imperative command
     		$ kubectl expose deployment nginx-deployment  --type=NodePort  --name=nginx-service-nodeport
     
@@ -56,6 +57,7 @@ You can allow incoming traffic through the port (30994) that's listed in the out
 		$ kubectl delete service nginx-service-nodeport
  
 	Step 6: Create a LoadBalancer service
+	
 		6.1 To expose a deployment of LoadBalancer type, run the following imperative command
 		$ kubectl expose deployment nginx-deployment  --type=LoadBalancer  --name=nginx-service-loadbalancer
 		
