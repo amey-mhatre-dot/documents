@@ -14,11 +14,12 @@
 		$ kubectl get pods -A -o wide
 		
 	Step 3: Deploy sample application
-    3.1 Apply a deployment file
+    	
+		3.1 Apply a deployment file
 		$ kubectl apply -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/nginx-deployment.yaml
-		
-    3.2 Verify that your pods are running and have their own internal IP addresses:
-    $ kubectl get pods -l 'app=nginx' -o wide
+
+		3.2 Verify that your pods are running and have their own internal IP addresses:
+		$ kubectl get pods -l 'app=nginx' -o wide
 
 NOTES: Keep in mind the following details:
 * ClusterIP exposes the service on a cluster's internal IP address.
@@ -26,35 +27,33 @@ NOTES: Keep in mind the following details:
 * LoadBalancer exposes the service externally using a load balancer.
 
 	Step 4: Create a ClusterIP service 
-    4.1 To expose a deployment of ClusterIP type, run the following imperative command:
+    		4.1 To expose a deployment of ClusterIP type, run the following imperative command:
 		$ kubectl expose deployment nginx-deployment  --type=ClusterIP  --name=nginx-service-cluster-ip
     
-    4.2 Access the application and get the ClusterIP number
-    $ kubectl get service nginx-service-cluster-ip
-    
-    4.3 Delete the ClusterIP service:
-    $ kubectl delete service nginx-service-cluster-ip
+	    	4.2 Access the application and get the ClusterIP number
+	    	$ kubectl get service nginx-service-cluster-ip
+
+	    	4.3 Delete the ClusterIP service:
+	    	$ kubectl delete service nginx-service-cluster-ip
 	
 	Step 5: Create a NodePort service
 		5.1 To expose a deployment of NodePort type, run the following imperative command
-    $ kubectl expose deployment nginx-deployment  --type=NodePort  --name=nginx-service-nodeport
+    		$ kubectl expose deployment nginx-deployment  --type=NodePort  --name=nginx-service-nodeport
     
-    5.2 Get information about nginx-service:
-    $ kubectl get service/nginx-service-nodeport
+		5.2 Get information about nginx-service:
+    		$ kubectl get service/nginx-service-nodeport
 
 NOTES: The ServiceType is a NodePort and ClusterIP that are created automatically for the service. 
 The output from the preceding command shows that the NodePort service is exposed externally on the port (30994) of the available worker node's EC2 instance. 
 Before you access NodeIP:NodePort from outside the cluster, you must set the security group of the nodes to allow incoming traffic. 
 You can allow incoming traffic through the port (30994) that's listed in the output of the preceding kubectl get service command.
 
-    5.3 If the node is in a public subnet and is reachable from the internet, check the node’s public IP address:
-    $ kubectl get nodes -o wide
-    
-    5.4 Delete the NodePort service:
-     $ kubectl delete service nginx-service-nodeport
- 
- 
+    		5.3 If the node is in a public subnet and is reachable from the internet, check the node’s public IP address:
+		$ kubectl get nodes -o wide
 
+		5.4 Delete the NodePort service:
+		$ kubectl delete service nginx-service-nodeport
+ 
 	Step 6: Delete your cluster and nodes
 		$ eksctl delete cluster --name nginx-cluster --region ap-south-1
 		
