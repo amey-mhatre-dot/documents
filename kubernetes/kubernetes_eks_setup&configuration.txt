@@ -1,0 +1,29 @@
+## Perform all the below steps on your local machine.
+
+# Install and Configure AWS CLI
+	$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+	$ unzip awscliv2.zip
+	$ sudo ./aws/install
+	
+	Configure AWS account on local machine.
+	$ aws configure
+		AWS Access Key ID [None]: AKIAXXXXXXXXXXXX
+		AWS Secret Access Key [None]: M5FXXXXXXXXXXXXXXXXXORAVb
+		Default region name [None]: ap-south-1
+		Default output format [None]:
+
+
+# kubectl installation
+
+	$ curl -o kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.7/2022-10-31/bin/linux/amd64/kubectl
+	$ chmod +x ./kubectl
+	$ mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+	$ echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+	$ kubectl version --short --client
+	
+# Installing or updating eksctl
+	$ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+	
+	$ sudo mv /tmp/eksctl /usr/local/bin
+	$ eksctl version
+  
