@@ -3,7 +3,7 @@
 	Step 1: Create your Amazon EKS cluster and nodes
 NOTES: The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and can't be longer than 100 characters.	
 		1.1 Create your Amazon EKS cluster with the following command.
-		$ eksctl create cluster --name nginx-cluster --region ap-south-1 --nodes=2 --node-type=t2.micro
+		$ eksctl create cluster --name nginx-cluster --region us-west-1 --nodes=2 --node-type=t2.micro
 
 	Step 2: View Kubernetes resources
 	
@@ -71,5 +71,5 @@ You can allow incoming traffic through the port (30994) that's listed in the out
 		$ kubectl delete deployments nginx-deployment
 	
 	Step 8: Delete your cluster and nodes
-		$ eksctl delete cluster --name nginx-cluster --region ap-south-1
+		$ eksctl delete cluster --name nginx-cluster --region us-west-1
 		
