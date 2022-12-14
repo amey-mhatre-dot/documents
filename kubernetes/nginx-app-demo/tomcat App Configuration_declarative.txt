@@ -3,7 +3,7 @@
 	Step 1: Create your Amazon EKS cluster and nodes
 NOTES: The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and can't be longer than 100 characters.	
 		1.1 Create your Amazon EKS cluster with the following command.
-		$ eksctl create cluster --name ritesh-nginx-cluster --region us-west-1 --nodes=2 --node-type=t2.micro --vpc-public-subnets subnet-0a51d369922e2cd65,subnet-09c867e32a53503d7
+		$ eksctl create cluster --name ritesh-tomcat-cluster --region us-west-1 --nodes=2 --node-type=t2.micro --vpc-public-subnets subnet-0a51d369922e2cd65,subnet-09c867e32a53503d7
 
 	Step 2: View Kubernetes resources
 	
@@ -16,7 +16,7 @@ NOTES: The name can contain only alphanumeric characters (case-sensitive) and hy
 	Step 3: Deploy sample application
     	
 		3.1 Apply a deployment file
-		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/nginx-deployment.yaml
+		$ kubectl create -f tomcat-deployment.yaml
 
 		3.2 Verify that your pods are running and have their own internal IP addresses:
 		$ kubectl get pods -o wide
@@ -29,21 +29,21 @@ NOTES: Keep in mind the following details:
 	Step 4: Create a ClusterIP service
 
     		4.1 To expose a deployment of ClusterIP type, run the following imperative command:
-		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/clusterip.yaml
+		$ kubectl create -f clusterip.yaml
     
 	    	4.2 Access the application and get the ClusterIP number
-	    	$ kubectl get service nginx-service-cluster-ip
+	    	$ kubectl get service tomcat-service-cluster-ip
 
 	    	4.3 Delete the ClusterIP service:
-	    	$ kubectl delete service nginx-service-cluster-ip
+	    	$ kubectl delete service tomcat-service-cluster-ip
 	
 	Step 5: Create a NodePort service
 	
 		5.1 To expose a deployment of NodePort type, run the following imperative command
-    		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/nodeport.yaml
+    		$ kubectl create -f nodeport.yaml
     
-		5.2 Get information about nginx-service:
-    		$ kubectl get service/nginx-service-nodeport
+		5.2 Get information about tomcat-service:
+    		$ kubectl get service/tomcat-service-nodeport
 
 NOTES: The ServiceType is a NodePort and ClusterIP that are created automatically for the service. 
 The output from the preceding command shows that the NodePort service is exposed externally on the port (30994) of the available worker node's EC2 instance. 
@@ -54,22 +54,22 @@ You can allow incoming traffic through the port (30994) that's listed in the out
 		$ kubectl get nodes -o wide
 
 		5.4 Delete the NodePort service:
-		$ kubectl delete service nginx-service-nodeport
+		$ kubectl delete service tomcat-service-nodeport
  
 	Step 6: Create a LoadBalancer service
 	
 		6.1 To expose a deployment of LoadBalancer type, run the following imperative command
-		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/loadbalancer.yaml
+		$ kubectl create -f loadbalancer.yaml
 		
-		6.2 Get information about nginx-service and access the application on EXTERNAL-IP
-		$ kubectl get service/nginx-service-loadbalancer
+		6.2 Get information about tomcat-service and access the application on EXTERNAL-IP
+		$ kubectl get service/tomcat-service-loadbalancer
 		
 		6.3 Delete the LoadBalancer service
-		$ kubectl delete service nginx-service-loadbalancer
+		$ kubectl delete service tomcat-service-loadbalancer
 
 	Step 7: Delete your deployments
-		$ kubectl delete deployments nginx-deployment
+		$ kubectl delete deployments tomcat-deployment
 	
 	Step 8: Delete your cluster and nodes
-		$ eksctl delete cluster --name nginx-cluster --region us-west-1
+		$ eksctl delete cluster --name tomcat-cluster --region us-west-1
 		
