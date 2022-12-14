@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: docker.io/riteshdevopstrainer/leopard_nginx:v1
+        image: docker.io/riteshdevopstrainer/demo_tomcat:1.0.1
         ports:
         - containerPort: 80
