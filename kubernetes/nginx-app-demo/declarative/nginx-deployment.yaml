@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: docker.io/riteshdevopstrainer/leopard_nginx:v1
         ports:
         - containerPort: 80
