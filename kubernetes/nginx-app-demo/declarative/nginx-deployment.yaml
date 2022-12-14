@@ -3,19 +3,18 @@ kind: Deployment
 metadata:
   name: tomcat-deployment
   labels:
-    app: tomcat
+    app: tomcat-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tomcat
+      app: tomcat-deployment
   template:
     metadata:
       labels:
-        app: tomcat
+        app: tomcat-deployment
     spec:
       containers:
-      - name: tomcat
-        image: docker.io/riteshdevopstrainer/demo_tomcat:1.0.1
+      - image: docker.io/riteshdevopstrainer/demo_tomcat:1.0.1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
