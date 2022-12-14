@@ -3,7 +3,7 @@
 	Step 1: Create your Amazon EKS cluster and nodes
 NOTES: The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and can't be longer than 100 characters.	
 		1.1 Create your Amazon EKS cluster with the following command.
-		$ eksctl create cluster --name nginx-cluster --region us-west-1 --nodes=2 --node-type=t2.micro --vpc-public-subnets subnet-0a51d369922e2cd65,subnet-09c867e32a53503d7
+		$ eksctl create cluster --name ritesh-nginx-cluster --region us-west-1 --nodes=2 --node-type=t2.micro --vpc-public-subnets subnet-0a51d369922e2cd65,subnet-09c867e32a53503d7
 
 	Step 2: View Kubernetes resources
 	
@@ -17,7 +17,6 @@ NOTES: The name can contain only alphanumeric characters (case-sensitive) and hy
     	
 		3.1 Apply a deployment file
 		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/nginx-deployment.yaml
-		//kubectl create deployment nginx-deployment --image=nginx:latest --port=80 --replicas=2
 
 		3.2 Verify that your pods are running and have their own internal IP addresses:
 		$ kubectl get pods -o wide
@@ -31,7 +30,6 @@ NOTES: Keep in mind the following details:
 
     		4.1 To expose a deployment of ClusterIP type, run the following imperative command:
 		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/clusterip.yaml
-		//kubectl expose deployment nginx-deployment  --type=ClusterIP  --name=nginx-service-cluster-ip
     
 	    	4.2 Access the application and get the ClusterIP number
 	    	$ kubectl get service nginx-service-cluster-ip
@@ -43,7 +41,6 @@ NOTES: Keep in mind the following details:
 	
 		5.1 To expose a deployment of NodePort type, run the following imperative command
     		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/nodeport.yaml
-		// kubectl expose deployment nginx-deployment  --type=NodePort  --name=nginx-service-nodeport
     
 		5.2 Get information about nginx-service:
     		$ kubectl get service/nginx-service-nodeport
@@ -63,7 +60,6 @@ You can allow incoming traffic through the port (30994) that's listed in the out
 	
 		6.1 To expose a deployment of LoadBalancer type, run the following imperative command
 		$ kubectl create -f https://github.com/Ritesh-Goyal/documents/blob/main/kubernetes/nginx-app-demo/declarative/loadbalancer.yaml
-		// kubectl expose deployment nginx-deployment  --type=LoadBalancer  --name=nginx-service-loadbalancer
 		
 		6.2 Get information about nginx-service and access the application on EXTERNAL-IP
 		$ kubectl get service/nginx-service-loadbalancer
