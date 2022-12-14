@@ -19,7 +19,7 @@ NOTES: The name can contain only alphanumeric characters (case-sensitive) and hy
 		$ kubectl create deployment nginx-deployment --image=nginx:latest --port=80 --replicas=2
 
 		3.2 Verify that your pods are running and have their own internal IP addresses:
-		$ kubectl get pods -l 'app=nginx' -o wide
+		$ kubectl get pods -o wide
 
 NOTES: Keep in mind the following details:
 * ClusterIP exposes the service on a cluster's internal IP address.
