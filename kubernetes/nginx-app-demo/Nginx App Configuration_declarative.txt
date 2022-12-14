@@ -1,0 +1,75 @@
+# Creating First Amazon EKS cluster and nodes
+
+	Step 1: Create your Amazon EKS cluster and nodes
+NOTES: The name can contain only alphanumeric characters (case-sensitive) and hyphens. It must start with an alphabetic character and can't be longer than 100 characters.	
+		1.1 Create your Amazon EKS cluster with the following command.
+		$ eksctl create cluster --name nginx-cluster --region us-west-1 --nodes=2 --node-type=t2.micro --vpc-public-subnets subnet-0a51d369922e2cd65,subnet-09c867e32a53503d7
+
+	Step 2: View Kubernetes resources
+	
+		2.1 View your cluster nodes.
+		$ kubectl get nodes -o wide
+		
+		2.2 View the workloads running on your cluster
+		$ kubectl get pods -A -o wide
+		
+	Step 3: Deploy sample application
+    	
+		3.1 Apply a deployment file
+		$ kubectl create deployment nginx-deployment --image=nginx:latest --port=80 --replicas=2
+
+		3.2 Verify that your pods are running and have their own internal IP addresses:
+		$ kubectl get pods -o wide
+
+NOTES: Keep in mind the following details:
+* ClusterIP exposes the service on a cluster's internal IP address.
+* NodePort exposes the service on each node’s IP address at a static port.
+* LoadBalancer exposes the service externally using a load balancer.
+
+	Step 4: Create a ClusterIP service
+
+    		4.1 To expose a deployment of ClusterIP type, run the following imperative command:
+		$ kubectl expose deployment nginx-deployment  --type=ClusterIP  --name=nginx-service-cluster-ip
+    
+	    	4.2 Access the application and get the ClusterIP number
+	    	$ kubectl get service nginx-service-cluster-ip
+
+	    	4.3 Delete the ClusterIP service:
+	    	$ kubectl delete service nginx-service-cluster-ip
+	
+	Step 5: Create a NodePort service
+	
+		5.1 To expose a deployment of NodePort type, run the following imperative command
+    		$ kubectl expose deployment nginx-deployment  --type=NodePort  --name=nginx-service-nodeport
+    
+		5.2 Get information about nginx-service:
+    		$ kubectl get service/nginx-service-nodeport
+
+NOTES: The ServiceType is a NodePort and ClusterIP that are created automatically for the service. 
+The output from the preceding command shows that the NodePort service is exposed externally on the port (30994) of the available worker node's EC2 instance. 
+Before you access NodeIP:NodePort from outside the cluster, you must set the security group of the nodes to allow incoming traffic. 
+You can allow incoming traffic through the port (30994) that's listed in the output of the preceding kubectl get service command.
+
+    		5.3 If the node is in a public subnet and is reachable from the internet, check the node’s public IP address:
+		$ kubectl get nodes -o wide
+
+		5.4 Delete the NodePort service:
+		$ kubectl delete service nginx-service-nodeport
+ 
+	Step 6: Create a LoadBalancer service
+	
+		6.1 To expose a deployment of LoadBalancer type, run the following imperative command
+		$ kubectl expose deployment nginx-deployment  --type=LoadBalancer  --name=nginx-service-loadbalancer
+		
+		6.2 Get information about nginx-service and access the application on EXTERNAL-IP
+		$ kubectl get service/nginx-service-loadbalancer
+		
+		6.3 Delete the LoadBalancer service
+		$ kubectl delete service nginx-service-loadbalancer
+
+	Step 7: Delete your deployments
+		$ kubectl delete deployments nginx-deployment
+	
+	Step 8: Delete your cluster and nodes
+		$ eksctl delete cluster --name nginx-cluster --region us-west-1
+		
