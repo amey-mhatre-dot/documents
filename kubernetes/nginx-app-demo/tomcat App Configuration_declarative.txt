@@ -71,5 +71,5 @@ You can allow incoming traffic through the port (30994) that's listed in the out
 		$ kubectl delete deployments tomcat-deployment
 	
 	Step 8: Delete your cluster and nodes
-		$ eksctl delete cluster --name tomcat-cluster --region us-west-1
+		$ eksctl delete cluster --name ritesh-tomcat-cluster --region us-west-1
 		
