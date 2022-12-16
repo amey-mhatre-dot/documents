@@ -13,3 +13,7 @@ Upscale the deployment by increaing the replicaset
 kubectl scale deployment <deployment-name> --replicas=count-of-replica
 $ kubectl scale deployment tomcat-deployment --replicas=4
 
+Describe the Pods and view the details
+kubectl describe pods <Pod-name>
+$ kubectl describe pods tomcat-deployment-5b5b49c7d8-hkdd9
+
