@@ -22,3 +22,19 @@ Rolling Update of the Kubernetes PODS
 kubectl set image deployment/<deployment-name> <container-name>=image
 $ kubectl set image deployment/tomcat-deployment tomcat=docker.io/riteshdevopstrainer/demo_tomcat:1.0.2
 
+View the logs of the Pods
+  kubectl logs <Pod-name>
+$ kubectl logs tomcat-deployment-74f6c56d9c-9b7jl
+
+View the logs of the Pods continuously
+  kubectl logs -f <Pod-name>
+$ kubectl logs -f tomcat-deployment-74f6c56d9c-9b7jl
+
+View the CPU utilisation of the POD or nodes
+$ kubectl top node
+$ kubectl top pod
+
+Generate YAML file using imperative commands
+Append '--dry-run=client -o yaml' at the end of the imperative command
+$ kubectl create deployment nginx-deployment --image=nginx:latest --port=80 --replicas=2 --dry-run=client -o yaml
+
