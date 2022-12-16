@@ -1,5 +1,6 @@
 List the Pods
 $ kubectl get pods
+$ kubectl get pods -o wide
 
 List Deployments
 $ kubectl get deployments
