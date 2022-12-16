@@ -17,3 +17,8 @@ Describe the Pods and view the details
 kubectl describe pods <Pod-name>
 $ kubectl describe pods tomcat-deployment-5b5b49c7d8-hkdd9
 
+
+Rolling Update of the Kubernetes PODS
+kubectl set image deployment/<deployment-name> <container-name>=image
+$ kubectl set image deployment/tomcat-deployment tomcat=docker.io/riteshdevopstrainer/demo_tomcat:1.0.2
+
