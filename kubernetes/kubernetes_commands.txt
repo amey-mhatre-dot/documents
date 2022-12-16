@@ -1,0 +1,15 @@
+List the Pods
+$ kubectl get pods
+$ kubectl get pods -o wide
+
+List Deployments
+$ kubectl get deployments
+
+Replica-Set
+$ kubectl get replicaset 
+$ kubectl get rs
+
+Upscale the deployment by increaing the replicaset
+kubectl scale deployment <deployment-name> --replicas=count-of-replica
+$ kubectl scale deployment tomcat-deployment --replicas=4
+
