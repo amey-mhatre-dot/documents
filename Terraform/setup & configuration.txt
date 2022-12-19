@@ -22,7 +22,10 @@ A) Installation on Ubuntu
   $ touch ~/.bashrc
 
   Install the autocomplete package.
-  terraform -install-autocomplete
+  $ terraform -install-autocomplete
+  
+  Check Terraform Version
+  $ terraform --version
 
 B) Configure AWS account and create a user with Administrator Access with programmatic access. Keep the csv files saved.
 
